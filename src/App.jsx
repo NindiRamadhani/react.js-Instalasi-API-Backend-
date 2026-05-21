@@ -1,4 +1,3 @@
-// src/App.jsx
 import UserList from './components/UserList';
 import './App.css';
 
