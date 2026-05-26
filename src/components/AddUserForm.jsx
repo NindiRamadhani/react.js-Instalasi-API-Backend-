@@ -2,18 +2,14 @@ import { useState } from 'react';
 import axios from 'axios';
 
 export default function AddUserForm({ onSuccess }) {
-  // 1. Inisialisasi state untuk menampung data form
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
+    title: '',
+    body: '',
+    userId: '',
   });
-
-  // State untuk status loading saat submit dan untuk pesan feedback
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState(null);
 
-  // 2. Fungsi untuk menangani perubahan input secara dinamis (Controlled Input)
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -21,85 +17,67 @@ export default function AddUserForm({ onSuccess }) {
     });
   };
 
-  // 3. Fungsi untuk menangani submit form (Koneksi ke API)
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Mencegah reload halaman browser
+    e.preventDefault();
     setIsSubmitting(true);
     setMessage(null);
 
     try {
-      // Mengirim POST request ke fake API JSONPlaceholder
       const response = await axios.post(
-        'https://jsonplaceholder.typicode.com/users',
+        'https://jsonplaceholder.typicode.com/posts',
         {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
+          title: formData.title,
+          body: formData.body,
+          userId: Number(formData.userId),
         }
       );
 
-      // Jika sukses, berikan feedback ke user
       setMessage({ type: 'success', text: 'Data berhasil ditambahkan (Simulasi)!' });
-      
-      // Kosongkan form kembali setelah berhasil
-      setFormData({ name: '', email: '', phone: '' });
-
-      // Opsi tambahan: memicu fungsi reload data di komponen induk jika ada
+      setFormData({ title: '', body: '', userId: '' });
       if (onSuccess) onSuccess(response.data);
-
     } catch (error) {
-      // Jika terjadi kesalahan jaringan atau API bermasalah
       setMessage({ type: 'error', text: 'Gagal menambahkan data!' });
       console.error('POST Error:', error);
     } finally {
-      setIsSubmitting(false); // Matikan loading spinner/status
+      setIsSubmitting(false);
     }
   };
 
   return (
     <div style={styles.container}>
-      <h3>Tambah Pengguna Baru</h3>
-
-      {/* Menampilkan pesan sukses/gagal secara kondisional */}
+      <h3>Tambah Post Baru</h3>
       {message && (
         <div style={message.type === 'success' ? styles.success : styles.error}>
           {message.text}
         </div>
       )}
-
-      {/* Form Input */}
       <form onSubmit={handleSubmit} style={styles.form}>
         <input
           type="text"
-          name="name"
-          placeholder="Nama Lengkap"
-          value={formData.name}
+          name="title"
+          placeholder="Judul Post"
+          value={formData.title}
           onChange={handleChange}
           required
           style={styles.input}
         />
-
+        <textarea
+          name="body"
+          placeholder="Isi Post"
+          value={formData.body}
+          onChange={handleChange}
+          required
+          style={{ ...styles.input, minHeight: '80px' }}
+        />
         <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
+          type="number"
+          name="userId"
+          placeholder="User ID (angka)"
+          value={formData.userId}
           onChange={handleChange}
           required
           style={styles.input}
         />
-
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Nomor Telepon"
-          value={formData.phone}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
-
-        {/* Tombol akan berubah text dan disabled saat proses pengiriman berlangsung */}
         <button type="submit" disabled={isSubmitting} style={styles.button}>
           {isSubmitting ? 'Mengirim...' : 'Simpan Data'}
         </button>
@@ -108,7 +86,6 @@ export default function AddUserForm({ onSuccess }) {
   );
 }
 
-// Styling internal menggunakan JavaScript Object CSS (sesuai arahan modul)
 const styles = {
   container: {
     backgroundColor: '#f9f9f9',
@@ -136,7 +113,6 @@ const styles = {
     borderRadius: '4px',
     cursor: 'pointer',
     fontSize: '16px',
-    transition: 'background-color 0.2s',
   },
   success: {
     backgroundColor: '#d4edda',
@@ -144,7 +120,6 @@ const styles = {
     padding: '10px',
     borderRadius: '4px',
     marginBottom: '1rem',
-    border: '1px solid #c3e6cb'
   },
   error: {
     backgroundColor: '#f8d7da',
@@ -152,6 +127,5 @@ const styles = {
     padding: '10px',
     borderRadius: '4px',
     marginBottom: '1rem',
-    border: '1px solid #f5c6cb'
   },
 };

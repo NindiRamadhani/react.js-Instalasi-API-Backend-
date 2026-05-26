@@ -67,7 +67,7 @@ const DashboardYohana = () => {
         <h1 className="text-4xl font-black text-slate-900 tracking-tight mt-3 mb-2 bg-gradient-to-r from-slate-900 to-indigo-950 bg-clip-text text-transparent">
           Advanced Mini Pokedex ⚡
         </h1>
-        <p className="text-slate-500 font-medium text-sm">Dikembangkan secara mandiri oleh: <span className="text-indigo-600 font-bold">Yohana</span></p>
+        <p className="text-slate-500 font-medium text-sm">Dikembangkan secara mandiri oleh: <span className="text-indigo-600 font-bold">Yohana July Serafim Sitorus(253140707111153) </span></p>
       </div>
 
       {/* Kontrol Search & Filter Elegan */}

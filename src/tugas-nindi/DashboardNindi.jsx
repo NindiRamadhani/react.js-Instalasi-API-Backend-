@@ -155,9 +155,9 @@ export default function DashboardNindi() {
       {/* Header */}
       <header className="bg-green-700 text-white py-6 shadow-lg">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-center">Nindi's Rick & Morty Dashboard</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-center">Nindi Ramadhani (253140707111126)</h1>
           <p className="text-center text-green-100 mt-2">Tugas Mandiri PjBL - Integrasi API React</p>
-          <p className="text-center text-green-100 mt-2">Nindi Ramadhani (253140707111126)</p>
+          <p className="text-center text-green-100 mt-2">Nindi's Rick & Morty Dashboard</p>
         </div>
       </header>
 
