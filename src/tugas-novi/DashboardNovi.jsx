@@ -74,6 +74,7 @@ function DashboardNovi() {
   return (
     <div className="p-4 md:p-8 max-w-7xl mx-auto font-sans">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center md:text-left border-b pb-2">
+        Tugas Mandiri Novi Aflin Putri(253140707111144)
         Daftar Menu Makanan 
       </h2>
 
