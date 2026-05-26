@@ -152,12 +152,12 @@ export default function DashboardNindi() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50">
-      {/* Header */}
-      <header className="bg-green-700 text-white py-6 shadow-lg">
+      {/* HEADER YANG DIPERKECIL - ukuran padding dan teks lebih kecil */}
+      <header className="bg-green-700 text-white py-3 shadow-md">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-center">Nindi Ramadhani (253140707111126)</h1>
-          <p className="text-center text-green-100 mt-2">Tugas Mandiri PjBL - Integrasi API React</p>
-          <p className="text-center text-green-100 mt-2">Nindi's Rick & Morty Dashboard</p>
+          <h1 className="text-xl md:text-2xl font-bold text-center">Nindi Ramadhani (253140707111126)</h1>
+          <p className="text-center text-green-100 mt-1 text-sm md:text-base">Tugas Mandiri PjBL - Integrasi API React</p>
+          <p className="text-center text-green-100 mt-1 text-sm md:text-base">Nindi's Rick & Morty Dashboard</p>
         </div>
       </header>
 
