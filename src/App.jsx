@@ -1,62 +1,58 @@
-import React from 'react';
-import UserList from './components/UserList';
-import AddUserForm from './components/AddUserForm'; 
-import './App.css';
+import { useState } from 'react'
 
-// ==================================================================
-// IMPORT TUGAS MANDIRI KELOMPOK (PJBL)
-// ==================================================================
-// import DashboardNovi from './tugas-novi/DashboardNovi'; // Di-comment dulu
-// import DashboardNindi from './tugas-nindi/DashboardNindi';
-import DashboardYohana from './tugas-yohana/DashboardYohana'; // HAPUS DOUBLE SLASH DI SINI
+// Sesuaikan path berikut dengan lokasi sebenarnya file dashboard masing-masing
+import DashboardNindi from './tugas-nindi/DashboardNindi'
+import DashboardNovi from './tugas-novi/DashboardNovi'
+import DashboardYohana from './tugas-yohana/DashboardYohana'
 
 function App() {
+  const [activeTab, setActiveTab] = useState('nindi')
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'nindi': return <DashboardNindi />
+      case 'novi': return <DashboardNovi />
+      case 'yohana': return <DashboardYohana />
+      default: return <DashboardNindi />
+    }
+  }
+
   return (
-    <div className="App">
-      {/* ==================================================================
-        BAGIAN A: PRAKTIKUM 1 & 2 (Disembunyikan Sementara)
-        ==================================================================
-      */}
-      {/* <header style={styles.header}>
-        <h1>🚀 React Integrasi API</h1>
-        <p>Data dari JSONPlaceholder API (dummy backend)</p>
+    <div className="min-h-screen bg-gray-100">
+      <header className="bg-green-700 text-white py-4 shadow-md">
+        <div className="container mx-auto px-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-center">
+            Tugas Mandiri (PjBL) Masing-Masing Anggota Kelompok
+          </h1>
+        </div>
       </header>
-      
-      <main style={{ padding: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
-        <AddUserForm /> 
-        <hr style={{ margin: '2rem 0', border: '0.5px solid #eee' }} />
-        <UserList />
-      </main>
-      */}
 
-      {/* ==================================================================
-        BAGIAN B: TUGAS MANDIRI (PjBL) MINGGU INI
-        ==================================================================
-      */}
-      <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-        <h1 style={{ textAlign: 'center' }}>Dashboard Tugas Mandiri (PjBL)</h1>
-        <hr style={{ margin: '1.5rem 0', border: '0.5px solid #ccc' }} />
-
-        {/* 1. Jalur Kerja Novi (Di-comment agar tidak bentrok tampilan di browser-mu) */}
-        {/* <DashboardNovi /> */}
-
-        {/* 2. Jalur Kerja Nindi */}
-        {/* <DashboardNindi /> */}
-
-        {/* 3. Jalur Kerja Yohana (AKTIF) */}
-        <DashboardYohana /> 
+      <div className="container mx-auto px-4 mt-6">
+        <div className="flex justify-center gap-4 border-b pb-2">
+          <button onClick={() => setActiveTab('nindi')}
+            className={`px-6 py-2 rounded-t-lg ${activeTab === 'nindi' ? 'bg-green-600 text-white' : 'bg-gray-200'}`}>
+            Nindi
+          </button>
+          <button onClick={() => setActiveTab('novi')}
+            className={`px-6 py-2 rounded-t-lg ${activeTab === 'novi' ? 'bg-green-600 text-white' : 'bg-gray-200'}`}>
+            Novi
+          </button>
+          <button onClick={() => setActiveTab('yohana')}
+            className={`px-6 py-2 rounded-t-lg ${activeTab === 'yohana' ? 'bg-green-600 text-white' : 'bg-gray-200'}`}>
+            Yohana
+          </button>
+        </div>
       </div>
+
+      <div className="container mx-auto px-4 py-6">
+        {renderContent()}
+      </div>
+
+      <footer className="text-center py-4 text-gray-500 border-t mt-8">
+        Tugas Kelompok - Integrasi API React
+      </footer>
     </div>
-  );
+  )
 }
 
-const styles = {
-  header: {
-    backgroundColor: '#2c3e50',
-    color: 'white',
-    padding: '1.5rem',
-    textAlign: 'center',
-  },
-};
-
-export default App;
+export default App
